@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(){
+    char line[1000];
+    if(!fgets(line,1000,stdin)) return 0;
+    char *tok=strtok(line," \n");
+    int cnt[256]={0};
+    char q[1000];
+    int head=0,tail=0;
+    while(tok){
+        char c=tok[0];
+        cnt[(unsigned char)c]++;
+        q[tail++]=c;
+        while(head<tail && cnt[(unsigned char)q[head]]>1) head++;
+        if(head<tail) printf("%c ",q[head]);
+        else printf("-1 ");
+        tok=strtok(NULL," \n");
+    }
+    return 0;
+}
