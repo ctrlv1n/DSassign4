@@ -1,0 +1,10 @@
+#include <stdio.h>
+#define MAX 100
+int q[MAX],f=-1,r=-1;
+int isEmpty(){return f==-1;}
+int isFull(){return r==MAX-1;}
+void enqueue(int x){if(isFull())printf("FULL\n");else{if(f==-1)f=0;q[++r]=x;}}
+int dequeue(){if(isEmpty())return -1;int t=q[f++];if(f>r)f=r=-1;return t;}
+int peek(){if(isEmpty())return -1;return q[f];}
+void display(){if(isEmpty()){printf("EMPTY\n");return;}for(int i=f;i<=r;i++)printf("%d ",q[i]);printf("\n");}
+int main(){int ch,x;while(1){scanf("%d",&ch);if(ch==1){scanf("%d",&x);enqueue(x);}else if(ch==2)printf("%d\n",dequeue());else if(ch==3)printf("%d\n",isEmpty());else if(ch==4)printf("%d\n",isFull());else if(ch==5)display();else if(ch==6)printf("%d\n",peek());else break;}return 0;}
