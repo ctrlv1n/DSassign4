@@ -1,0 +1,10 @@
+#include <stdio.h>
+#define N 100
+int cq[N],front=-1,rear=-1;
+int cisempty(){return front==-1;}
+int cisfull(){return (rear+1)%N==front;}
+void cenqueue(int x){if(cisfull())printf("FULL\n");else{if(front==-1)front=0;rear=(rear+1)%N;cq[rear]=x;}}
+int cdequeue(){if(cisempty())return -1;int t=cq[front];if(front==rear)front=rear=-1;else front=(front+1)%N;return t;}
+int cpeek(){if(cisempty())return -1;return cq[front];}
+void cdisplay(){if(cisempty()){printf("EMPTY\n");return;}int i=front;while(1){printf("%d ",cq[i]); if(i==rear)break; i=(i+1)%N;}printf("\n");}
+int main(){int ch,x;while(1){scanf("%d",&ch);if(ch==1){scanf("%d",&x);cenqueue(x);}else if(ch==2)printf("%d\n",cdequeue());else if(ch==3)printf("%d\n",cisempty());else if(ch==4)printf("%d\n",cisfull());else if(ch==5)cdisplay();else if(ch==6)printf("%d\n",cpeek());else break;}return 0;}
